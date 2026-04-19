@@ -1,0 +1,17 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: lab2_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: lab2_user
+      POSTGRES_PASSWORD: lab2_pass
+      POSTGRES_DB: lab2_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init:/docker-entrypoint-initdb.d
+
+volumes:
+  postgres_data:
